@@ -1,16 +1,24 @@
-project: default
-destination:
-  namespace: student-14
-  name: in-cluster
-syncPolicy:
-  automated: {}
-sources:
-  - repoURL: 'https://charts.bitnami.com/bitnami'
-    targetRevision: 12.4.0
-    helm:
-      valueFiles:
-        - $values/jenkins/values.yaml
-    chart: jenkins
-  - repoURL: 'https://github.com/Sindahl/argocd-katas-training.git'
-    targetRevision: main
-    ref: values
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap-student-<YOURNUMBER>
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  spec:
+  project: default
+  destination:
+    namespace: student-14
+    name: in-cluster
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: 'https://charts.bitnami.com/bitnami'
+      targetRevision: 12.4.0
+      helm:
+        valueFiles:
+          - $values/jenkins/values.yaml
+      chart: jenkins
+    - repoURL: 'https://github.com/Sindahl/argocd-katas-training.git'
+      targetRevision: main
+      ref: values
