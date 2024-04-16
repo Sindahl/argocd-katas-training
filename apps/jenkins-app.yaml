@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-student-<YOURNUMBER>
+  name: bootstrap-student-14
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
